@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대구마음교육연구회 · 초등 5~6학년 사회정서교육</title>
+<meta name="description" content="대구마음교육연구회 — 2026 사회정서교육 교사연구회(유형3). 초등 5~6학년 사회정서역량(SEL) 프로그램을 개념 기반 탐구와 백워드 설계로 공동 개발합니다.">
+<style>
+  /* ===== 기존 개발 방향 문서와 동일한 색·타이포 팔레트 ===== */
+  :root{
+    --navy:#1F4E79; --navy2:#2E75B6; --ink:#1b2733; --muted:#5b6b7b;
+    --line:#dfe6ee; --bg:#f4f7fb; --card:#ffffff;
+    --c1:#0e7c86; --c1bg:#e5f4f5;   /* 자기인식·관리 */
+    --c2:#3f8f3a; --c2bg:#eaf5e8;   /* 소통·협력 */
+    --c3:#c07b1a; --c3bg:#faf0dd;   /* 책임 */
+    --c4:#6a4c93; --c4bg:#efe9f6;   /* 마음돌봄 */
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Noto Sans KR','Malgun Gothic',system-ui,sans-serif;color:var(--ink);
+       background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 64px;}
+
+  /* ===== 헤더 ===== */
+  header{background:linear-gradient(135deg,#1F4E79,#2E75B6);color:#fff;padding:54px 0 46px;}
+  header .wrap{padding-bottom:0;}
+  .eyebrow{font-size:13px;letter-spacing:.14em;opacity:.85;font-weight:600;}
+  h1{font-size:34px;margin:10px 0 8px;font-weight:800;line-height:1.22;}
+  .sub{font-size:15.5px;opacity:.94;max-width:640px;}
+  .badges{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;}
+  .badge{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+         border-radius:999px;padding:5px 13px;font-size:12.5px;font-weight:600;}
+
+  /* ===== 섹션 공통 ===== */
+  section{margin-top:40px;}
+  .kicker{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .kicker .num{background:var(--navy);color:#fff;width:27px;height:27px;border-radius:7px;
+        display:grid;place-items:center;font-weight:800;font-size:14px;flex:none;}
+  .kicker h2{font-size:21px;margin:0;font-weight:800;color:var(--navy);}
+  .lead{color:#42505f;font-size:14.5px;margin:-4px 0 16px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+        padding:22px 24px;box-shadow:0 1px 2px rgba(20,40,70,.04);}
+  .grid{display:grid;gap:14px;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:820px){.g2,.g4{grid-template-columns:1fr;}}
+
+  /* ===== 소개 문단 ===== */
+  .intro p{font-size:15px;color:#33424f;margin:0 0 12px;}
+  .intro p:last-child{margin-bottom:0;}
+  .intro b{color:var(--navy);}
+  .quote{margin-top:16px;background:#f8fbfe;border-left:4px solid var(--navy2);
+         border-radius:0 10px 10px 0;padding:14px 18px;font-size:15.5px;font-weight:700;color:#28323d;}
+  .quote .em1{color:var(--c1);} .quote .em3{color:var(--c3);}
+
+  /* ===== 개요 타일 ===== */
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px;}
+  .tile .t{font-size:12px;color:#7688;font-weight:700;letter-spacing:.02em;}
+  .tile .v{font-size:15px;font-weight:700;margin-top:4px;color:var(--ink);}
+
+  /* ===== 역량 카드 ===== */
+  .comp{border-radius:14px;padding:18px 18px 16px;border:1px solid var(--line);background:var(--card);
+        border-top:5px solid var(--cc);}
+  .comp .cnum{font-size:12px;font-weight:800;color:var(--cc);letter-spacing:.05em;}
+  .comp h3{margin:3px 0 5px;font-size:17px;font-weight:800;}
+  .comp .desc{font-size:13.4px;color:#3f4d5c;}
+
+  /* ===== 개발 원칙 ===== */
+  .princ{display:grid;gap:9px;}
+  .princ .p{font-size:14px;color:#3f4d5c;padding-left:20px;position:relative;}
+  .princ .p:before{content:"✓";position:absolute;left:0;color:var(--navy2);font-weight:800;}
+  .princ .p b{color:var(--navy);}
+
+  /* ===== CTA(문서 바로가기) ===== */
+  .cta{display:block;text-decoration:none;background:linear-gradient(135deg,#1F4E79,#2E75B6);
+       color:#fff;border-radius:16px;padding:26px 28px;box-shadow:0 6px 18px rgba(31,78,121,.18);
+       transition:transform .12s ease, box-shadow .12s ease;}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(31,78,121,.26);}
+  .cta .ctag{font-size:12.5px;font-weight:700;letter-spacing:.08em;opacity:.85;}
+  .cta .ctitle{font-size:21px;font-weight:800;margin:6px 0 6px;}
+  .cta .cdesc{font-size:14px;opacity:.95;}
+  .cta .go{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+       background:#fff;color:var(--navy);border-radius:10px;padding:9px 16px;font-weight:800;font-size:14px;}
+
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:#7d8a98;line-height:1.7;}
+</style>
+</head>
+<body>
+
+<!-- ===================== 헤더 ===================== -->
+<header>
+  <div class="wrap">
+    <div class="eyebrow">대구마음교육연구회 · 2026 사회정서교육 교사연구회 (유형 3)</div>
+    <h1>마음을 알아차리고 조절하는 힘,<br>아이들과 함께 배웁니다</h1>
+    <div class="sub">초등 5~6학년을 위한 사회정서교육(SEL) 프로그램을 개념 기반 탐구와 백워드 설계로 공동 개발하는 교사연구회입니다.</div>
+    <div class="badges">
+      <span class="badge">초등 5~6학년</span>
+      <span class="badge">총 17차시</span>
+      <span class="badge">4개 사회정서역량</span>
+      <span class="badge">개념적 렌즈 : 알아차림 &amp; 조절</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===================== 1. 연구회 소개 ===================== -->
+  <section>
+    <div class="kicker"><span class="num">1</span><h2>연구회 소개</h2></div>
+    <div class="card intro">
+      <p><b>대구마음교육연구회</b>는 초등학교 현장 교사들이 모여, 아이들이 자신의 마음을 <b>알아차리고 조절하며</b>
+         너와 우리 속에서 책임 있게 살아가도록 돕는 사회정서교육(SEL) 프로그램을 함께 연구하고 개발하는 모임입니다.</p>
+      <p>우리는 활동의 재미에 머무르지 않고 <b>소수의 핵심 이해(일반화)</b>와 <b>낯선 상황으로의 전이</b>를 수업의 중심에 둡니다.
+         「한국형 사회정서교육 교육과정」(2025 TR-27)을 준거로, 개념 기반 탐구와 이해중심(백워드) 설계를 통해
+         초등 5~6학년 17차시를 하나의 흐름으로 엮습니다.</p>
+      <div class="quote">
+        “나는 나의 마음을 어떻게 <span class="em1">알아차리고 조절</span>하며,
+        너와 우리 속에서 <span class="em3">책임 있게</span> 함께 살아가는가?”
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. 우리가 만드는 것 ===================== -->
+  <section>
+    <div class="kicker"><span class="num">2</span><h2>우리가 만드는 프로그램</h2></div>
+    <p class="lead">인식 → 관리 → 성찰의 공통 학습 흐름 위에, 네 개의 사회정서역량을 프로젝트 축으로 삼아 설계합니다.</p>
+    <div class="grid g4">
+      <div class="tile"><div class="t">대상 · 운영</div><div class="v">초등 5~6학년 · 유형3</div></div>
+      <div class="tile"><div class="t">분량 · 구조</div><div class="v">17차시 = 도입 2 + 4역량</div></div>
+      <div class="tile"><div class="t">상위 준거</div><div class="v">한국형 사회정서교육 교육과정</div></div>
+      <div class="tile"><div class="t">설계 방법</div><div class="v">백워드 + 개념 기반 탐구</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. 4개 사회정서역량 ===================== -->
+  <section>
+    <div class="kicker"><span class="num">3</span><h2>네 개의 사회정서역량</h2></div>
+    <div class="grid g4">
+      <div class="comp" style="--cc:var(--c1)"><div class="cnum">프로젝트 ①</div><h3>자기인식·관리</h3>
+        <div class="desc">나의 감정·강점·가치를 알아차리고 목표를 세워 감정과 행동을 조절·관리한다.</div></div>
+      <div class="comp" style="--cc:var(--c2)"><div class="cnum">프로젝트 ②</div><h3>소통·협력</h3>
+        <div class="desc">관점의 다름을 존중하는 경청·공감·갈등 해결로 공동체 문제를 함께 해결한다.</div></div>
+      <div class="comp" style="--cc:var(--c3)"><div class="cnum">프로젝트 ③</div><h3>책임</h3>
+        <div class="desc">나의 선택이 공동체에 미치는 영향을 알아차리고 공정하게 책임진다.</div></div>
+      <div class="comp" style="--cc:var(--c4)"><div class="cnum">프로젝트 ④</div><h3>마음돌봄</h3>
+        <div class="desc">마음의 신호를 알아차리고 사람·자원과 연결하여 회복의 방향으로 돌본다.</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. 개발 원칙 ===================== -->
+  <section>
+    <div class="kicker"><span class="num">4</span><h2>우리가 지키는 개발 원칙</h2></div>
+    <div class="card">
+      <div class="princ">
+        <div class="p"><b>일반화는 학생이 스스로</b> — 교사가 먼저 설명·암기시키지 않고, 학생이 사례에서 귀납적으로 도출합니다.</div>
+        <div class="p"><b>렌즈와 소재를 구분</b> — 감정·갈등·공동체·마음건강은 소재, 전체를 아우르는 알아차림·조절이 개념적 렌즈입니다.</div>
+        <div class="p"><b>전이 중심 평가</b> — 낯선 실제 상황에 적용하는 모습으로 배움을 확인합니다(연습 반복이 아님).</div>
+        <div class="p"><b>정서적 안전 · 비진단</b> — 자기노출을 강요하지 않고, 진단명을 부여하지 않으며, 위기 징후는 학생지원 체계로 연계합니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5. 팀원용 상세 문서 바로가기 ===================== -->
+  <section>
+    <div class="kicker"><span class="num">5</span><h2>팀원용 자료</h2></div>
+    <a class="cta" href="program-direction.html">
+      <div class="ctag">팀원 공유용 · 프로그램 매크로 설계</div>
+      <div class="ctitle">프로그램 개발 방향 안내 문서</div>
+      <div class="cdesc">개발 방향 · 4역량 · 성취기준 · 17차시 구성 · 프로젝트별 상세 설계 · 평가 방향 · 공동 개발 원칙을 한 장에 담았습니다.</div>
+      <span class="go">문서 열기 →</span>
+    </a>
+  </section>
+
+</div>
+
+<!-- ===================== 푸터 ===================== -->
+<footer>
+  <div class="wrap" style="padding-bottom:0;">
+    대구마음교육연구회 · 2026 사회정서교육 교사연구회(유형3) · 대표교사 여한기<br>
+    준거: 「한국형 사회정서교육 교육과정」(교육부·17개 시도교육청·한국교육환경보호원, 2025 TR-27)
+  </div>
+</footer>
+
+</body>
+</html>
