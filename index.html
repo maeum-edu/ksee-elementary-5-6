@@ -1,185 +1,213 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>대구마음교육연구회 · 초등 5~6학년 사회정서교육</title>
-<meta name="description" content="대구마음교육연구회 — 2026 사회정서교육 교사연구회(유형3). 초등 5~6학년 사회정서역량(SEL) 프로그램을 개념 기반 탐구와 백워드 설계로 공동 개발합니다.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>마음여행 웹 학습지 · 대구마음교육연구회</title>
+<meta name="description" content="초등 5~6학년 사회정서교육 17차시 프로그램 「마음여행」 수업에서 쓰는 웹 학습지">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-  /* ===== 기존 개발 방향 문서와 동일한 색·타이포 팔레트 ===== */
-  :root{
-    --navy:#1F4E79; --navy2:#2E75B6; --ink:#1b2733; --muted:#5b6b7b;
-    --line:#dfe6ee; --bg:#f4f7fb; --card:#ffffff;
-    --c1:#0e7c86; --c1bg:#e5f4f5;   /* 자기인식·관리 */
-    --c2:#3f8f3a; --c2bg:#eaf5e8;   /* 소통·협력 */
-    --c3:#c07b1a; --c3bg:#faf0dd;   /* 책임 */
-    --c4:#6a4c93; --c4bg:#efe9f6;   /* 마음돌봄 */
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;font-family:'Noto Sans KR','Malgun Gothic',system-ui,sans-serif;color:var(--ink);
-       background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
-  a{color:inherit;}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 64px;}
-
-  /* ===== 헤더 ===== */
-  header{background:linear-gradient(135deg,#1F4E79,#2E75B6);color:#fff;padding:54px 0 46px;}
-  header .wrap{padding-bottom:0;}
-  .eyebrow{font-size:13px;letter-spacing:.14em;opacity:.85;font-weight:600;}
-  h1{font-size:34px;margin:10px 0 8px;font-weight:800;line-height:1.22;}
-  .sub{font-size:15.5px;opacity:.94;max-width:640px;}
-  .badges{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;}
-  .badge{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
-         border-radius:999px;padding:5px 13px;font-size:12.5px;font-weight:600;}
-
-  /* ===== 섹션 공통 ===== */
-  section{margin-top:40px;}
-  .kicker{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-  .kicker .num{background:var(--navy);color:#fff;width:27px;height:27px;border-radius:7px;
-        display:grid;place-items:center;font-weight:800;font-size:14px;flex:none;}
-  .kicker h2{font-size:21px;margin:0;font-weight:800;color:var(--navy);}
-  .lead{color:#42505f;font-size:14.5px;margin:-4px 0 16px;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
-        padding:22px 24px;box-shadow:0 1px 2px rgba(20,40,70,.04);}
-  .grid{display:grid;gap:14px;}
-  .g2{grid-template-columns:1fr 1fr;}
-  .g4{grid-template-columns:repeat(4,1fr);}
-  @media(max-width:820px){.g2,.g4{grid-template-columns:1fr;}}
-
-  /* ===== 소개 문단 ===== */
-  .intro p{font-size:15px;color:#33424f;margin:0 0 12px;}
-  .intro p:last-child{margin-bottom:0;}
-  .intro b{color:var(--navy);}
-  .quote{margin-top:16px;background:#f8fbfe;border-left:4px solid var(--navy2);
-         border-radius:0 10px 10px 0;padding:14px 18px;font-size:15.5px;font-weight:700;color:#28323d;}
-  .quote .em1{color:var(--c1);} .quote .em3{color:var(--c3);}
-
-  /* ===== 개요 타일 ===== */
-  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px;}
-  .tile .t{font-size:12px;color:#7688;font-weight:700;letter-spacing:.02em;}
-  .tile .v{font-size:15px;font-weight:700;margin-top:4px;color:var(--ink);}
-
-  /* ===== 역량 카드 ===== */
-  .comp{border-radius:14px;padding:18px 18px 16px;border:1px solid var(--line);background:var(--card);
-        border-top:5px solid var(--cc);}
-  .comp .cnum{font-size:12px;font-weight:800;color:var(--cc);letter-spacing:.05em;}
-  .comp h3{margin:3px 0 5px;font-size:17px;font-weight:800;}
-  .comp .desc{font-size:13.4px;color:#3f4d5c;}
-
-  /* ===== 개발 원칙 ===== */
-  .princ{display:grid;gap:9px;}
-  .princ .p{font-size:14px;color:#3f4d5c;padding-left:20px;position:relative;}
-  .princ .p:before{content:"✓";position:absolute;left:0;color:var(--navy2);font-weight:800;}
-  .princ .p b{color:var(--navy);}
-
-  /* ===== CTA(문서 바로가기) ===== */
-  .cta{display:block;text-decoration:none;background:linear-gradient(135deg,#1F4E79,#2E75B6);
-       color:#fff;border-radius:16px;padding:26px 28px;box-shadow:0 6px 18px rgba(31,78,121,.18);
-       transition:transform .12s ease, box-shadow .12s ease;}
-  .cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(31,78,121,.26);}
-  .cta .ctag{font-size:12.5px;font-weight:700;letter-spacing:.08em;opacity:.85;}
-  .cta .ctitle{font-size:21px;font-weight:800;margin:6px 0 6px;}
-  .cta .cdesc{font-size:14px;opacity:.95;}
-  .cta .go{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
-       background:#fff;color:var(--navy);border-radius:10px;padding:9px 16px;font-weight:800;font-size:14px;}
-
-  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:#7d8a98;line-height:1.7;}
+@font-face{font-family:'GmarketSans';font-weight:700;font-display:swap;src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');}
+:root{--moss:#3C6647;--clay:#C06B3E;--clay-text:#A0532A;--paper:#FAF7F0;--ink:#24302A;--muted:#5E6B63;--line:#DCD6C8;--field:#8A8F86;}
+*{box-sizing:border-box}
+body{margin:0;word-break:keep-all;background:var(--paper);color:var(--ink);font:16px/1.7 'Pretendard',system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:9}
+:focus-visible{outline:3px solid var(--clay);outline-offset:2px}
+header.hero{background:var(--moss);color:#fff;padding:44px 0 40px}
+.eyebrow{font-size:14px;opacity:.9}
+h1{font-family:'GmarketSans',sans-serif;font-weight:700;font-size:56px;line-height:1.1;margin:10px 0 8px}
+.sub{font-size:18px;margin:0}
+section{padding:44px 0}
+section+section{border-top:1px solid var(--line)}
+h2{font-family:'GmarketSans',sans-serif;font-size:26px;margin:0 0 6px;color:var(--moss)}
+.lead{color:var(--muted);margin:0 0 20px}
+/* 웹 학습지 */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.search{flex:0 1 300px;min-width:0;min-height:44px;font:inherit;font-size:15px;padding:8px 14px;border:1px solid var(--field);border-radius:10px;background:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:15px;min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px;scroll-margin-top:16px}
+.card.flash{border-color:var(--clay);box-shadow:0 0 0 3px rgba(192,107,62,.25)}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.no{font-family:'GmarketSans',sans-serif;font-size:22px;color:var(--moss);line-height:1.2}
+.ln{font-size:14px;color:var(--muted)}
+.card h3{margin:6px 0 0;font-size:19px;line-height:1.4}
+.where{font-size:14px;color:var(--clay-text);font-weight:600}
+.card p{margin:0;font-size:15px}
+.safe{font-size:14px;color:var(--muted);background:var(--paper);border-radius:8px;padding:8px 10px}
+.fav{font:inherit;font-size:14px;min-height:44px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap;color:var(--muted)}
+.fav[aria-pressed="true"]{border-color:var(--clay);color:var(--clay-text);background:#FBF1EA}
+.actions{margin-top:auto;padding-top:10px;display:grid;grid-template-columns:1fr auto auto;gap:8px}
+.btn{font:inherit;font-size:15px;font-weight:600;min-height:48px;border-radius:10px;padding:8px 14px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;border:1px solid var(--moss)}
+.btn.primary{background:var(--moss);color:#fff}
+.btn.ghost{background:#fff;color:var(--moss)}
+.url{font-size:14px;color:var(--muted);word-break:break-all}
+.empty{padding:24px;text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:12px}
+.small{font-size:14px;color:var(--muted);margin:14px 0 0}
+/* 사용 전 확인 */
+.check{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.check li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px 12px 44px;position:relative}
+.check li::before{content:'✓';position:absolute;left:16px;top:12px;color:var(--moss);font-weight:700}
+/* 17차시 흐름 */
+.route{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stop{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stop.end{border-color:var(--clay)}
+.stop .range{font-size:14px;color:var(--muted)}
+.stop .blk{font-weight:700;color:var(--moss);font-size:17px;margin:0 0 6px}
+.stop.end .blk{color:var(--clay-text)}
+.stop ol{margin:0;padding:0;list-style:none;font-size:15px;line-height:1.45}
+.stop li{padding:6px 0;border-top:1px dashed var(--line)}
+.stop li:first-child{border-top:0}
+.stop li b{font-weight:600;color:var(--muted);margin-right:6px}
+.stop li a{display:inline-block;margin-left:6px;font-size:14px;font-weight:600;color:var(--clay-text);white-space:nowrap}
+footer{padding:28px 0 44px;font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
+/* QR 크게 보기 */
+dialog{border:0;border-radius:16px;padding:28px;max-width:min(92vw,520px);width:100%;text-align:center}
+dialog::backdrop{background:rgba(20,30,24,.6)}
+dialog svg{width:min(70vw,340px);height:auto;display:block;margin:12px auto}
+dialog h3{margin:0;font-size:20px}
+dialog .url{font-size:16px;color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+@media (max-width:860px){
+  h1{font-size:40px}
+  header.hero{padding:32px 0 28px}
+  .route{grid-template-columns:1fr}
+  .actions{grid-template-columns:1fr 1fr}
+  .actions .primary{grid-column:1 / -1}
+}
+@media (min-width:1600px){
+  body{font-size:18px}
+  .wrap{max-width:1280px}
+  h2{font-size:32px}
+  .stop ol{font-size:17px}
+}
 </style>
 </head>
 <body>
-
-<!-- ===================== 헤더 ===================== -->
-<header>
+<a class="skip" href="#worksheets">웹 학습지로 바로 가기</a>
+<header class="hero">
   <div class="wrap">
-    <div class="eyebrow">대구마음교육연구회 · 2026 사회정서교육 교사연구회 (유형 3)</div>
-    <h1>마음을 알아차리고 조절하는 힘,<br>아이들과 함께 배웁니다</h1>
-    <div class="sub">초등 5~6학년을 위한 사회정서교육(SEL) 프로그램을 개념 기반 탐구와 백워드 설계로 공동 개발하는 교사연구회입니다.</div>
-    <div class="badges">
-      <span class="badge">초등 5~6학년</span>
-      <span class="badge">총 17차시</span>
-      <span class="badge">4개 사회정서역량</span>
-      <span class="badge">개념적 렌즈 : 알아차림 &amp; 조절</span>
-    </div>
+    <div class="eyebrow">대구마음교육연구회</div>
+    <h1>마음여행</h1>
+    <p class="sub">초등 5~6학년 · 교과 외 편성 · 17차시 사회정서교육 프로그램</p>
   </div>
 </header>
 
-<div class="wrap">
-
-  <!-- ===================== 1. 연구회 소개 ===================== -->
-  <section>
-    <div class="kicker"><span class="num">1</span><h2>연구회 소개</h2></div>
-    <div class="card intro">
-      <p><b>대구마음교육연구회</b>는 초등학교 현장 교사들이 모여, 아이들이 자신의 마음을 <b>알아차리고 조절하며</b>
-         너와 우리 속에서 책임 있게 살아가도록 돕는 사회정서교육(SEL) 프로그램을 함께 연구하고 개발하는 모임입니다.</p>
-      <p>우리는 활동의 재미에 머무르지 않고 <b>소수의 핵심 이해(일반화)</b>와 <b>낯선 상황으로의 전이</b>를 수업의 중심에 둡니다.
-         「한국형 사회정서교육 교육과정」(2025 TR-27)을 준거로, 개념 기반 탐구와 이해중심(백워드) 설계를 통해
-         초등 5~6학년 17차시를 하나의 흐름으로 엮습니다.</p>
-      <div class="quote">
-        “나는 나의 마음을 어떻게 <span class="em1">알아차리고 조절</span>하며,
-        너와 우리 속에서 <span class="em3">책임 있게</span> 함께 살아가는가?”
-      </div>
+<main>
+<section id="worksheets" aria-labelledby="ws-h">
+  <div class="wrap">
+    <h2 id="ws-h">웹 학습지</h2>
+    <p class="lead" id="ws-lead"></p>
+    <div class="tools">
+      <input class="search" id="q" type="search" placeholder="학습지·차시 이름으로 찾기" aria-label="웹 학습지 찾기">
+      <div class="chips" id="chips" role="group" aria-label="영역으로 좁히기"></div>
     </div>
-  </section>
+    <div class="grid" id="grid" aria-live="polite"></div>
+    <p class="small" id="favnote" hidden>즐겨찾기는 지금 쓰는 이 브라우저에만 남습니다.</p>
+    <p class="small">웹 학습지 제작: 룰루랄라 한기쌤</p>
+  </div>
+</section>
 
-  <!-- ===================== 2. 우리가 만드는 것 ===================== -->
-  <section>
-    <div class="kicker"><span class="num">2</span><h2>우리가 만드는 프로그램</h2></div>
-    <p class="lead">인식 → 관리 → 성찰의 공통 학습 흐름 위에, 네 개의 사회정서역량을 프로젝트 축으로 삼아 설계합니다.</p>
-    <div class="grid g4">
-      <div class="tile"><div class="t">대상 · 운영</div><div class="v">초등 5~6학년 · 유형3</div></div>
-      <div class="tile"><div class="t">분량 · 구조</div><div class="v">출발 1 + 4블록(6·3·3·3) + 마무리 1</div></div>
-      <div class="tile"><div class="t">상위 준거</div><div class="v">한국형 사회정서교육 교육과정</div></div>
-      <div class="tile"><div class="t">설계 방법</div><div class="v">백워드 + 개념 기반 탐구</div></div>
-    </div>
-  </section>
+<section aria-labelledby="ck-h">
+  <div class="wrap">
+    <h2 id="ck-h">학생에게 나눠 주기 전에</h2>
+    <ul class="check">
+      <li>로그인 없이 바로 열립니다. 학생이 쓴 내용은 어디로도 전송되지 않고, 결과물은 학생 기기에 그림이나 PDF로 저장합니다.</li>
+      <li>별칭이나 가상 사례로 써도 됩니다. 자기 이야기를 꺼내도록 강요하지 않습니다.</li>
+      <li>개인 고민이 담긴 결과물은 게시하지 않습니다. 걱정되는 신호가 보이면 학교 학생지원 체계로 연결합니다.</li>
+    </ul>
+  </div>
+</section>
 
-  <!-- ===================== 3. 4개 사회정서역량 ===================== -->
-  <section>
-    <div class="kicker"><span class="num">3</span><h2>네 개의 사회정서역량</h2></div>
-    <div class="grid g4">
-      <div class="comp" style="--cc:var(--c1)"><div class="cnum">프로젝트 ①</div><h3>자기인식·관리</h3>
-        <div class="desc">나의 감정·강점·가치를 알아차리고 목표를 세워 감정과 행동을 조절·관리한다.</div></div>
-      <div class="comp" style="--cc:var(--c2)"><div class="cnum">프로젝트 ②</div><h3>소통·협력</h3>
-        <div class="desc">관점의 다름을 존중하는 경청·공감·갈등 해결로 공동체 문제를 함께 해결한다.</div></div>
-      <div class="comp" style="--cc:var(--c3)"><div class="cnum">프로젝트 ③</div><h3>책임</h3>
-        <div class="desc">나의 선택이 공동체에 미치는 영향을 알아차리고 공정하게 책임진다.</div></div>
-      <div class="comp" style="--cc:var(--c4)"><div class="cnum">프로젝트 ④</div><h3>마음돌봄</h3>
-        <div class="desc">마음의 신호를 알아차리고 사람·자원과 연결하여 회복의 방향으로 돌본다.</div></div>
-    </div>
-  </section>
+<section aria-labelledby="flow-h">
+  <div class="wrap">
+    <h2 id="flow-h">17차시 흐름</h2>
+    <p class="lead">출발 1차시 → 자기인식 · 자기관리 · 소통·협력 · 책임 · 마음돌봄 각 3차시 → 마무리 1차시</p>
+    <div class="route" id="route"><div class="stop end"><div class="range">1차시</div><div class="blk">출발</div><ol><li><b>1</b>마음 여행, 함께 출발</li></ol></div><div class="stop"><div class="range">2~4차시</div><div class="blk">자기인식</div><ol><li><b>2</b>다양한 삶! 나의 가치!</li><li><b>3</b>약점도 괜찮아, 모두 다 꽃이야!</li><li><b>4</b>내가 나라서 참 좋아!</li></ol></div><div class="stop"><div class="range">5~7차시</div><div class="blk">자기관리</div><ol><li><b>5</b>감정이 커질 때</li><li><b>6</b>멈추고 생각하고 행동하기</li><li><b>7</b>나만의 스트레스 대처법</li></ol></div><div class="stop"><div class="range">8~10차시</div><div class="blk">소통·협력</div><ol><li><b>8</b>마음이 통하는 대화</li><li><b>9</b>갈등을 기회로</li><li><b>10</b>함께 푸는 우리 문제</li></ol></div><div class="stop"><div class="range">11~13차시</div><div class="blk">책임</div><ol><li><b>11</b>너와 나의 다름</li><li><b>12</b>우리는 연결되어 있어</li><li><b>13</b>함께 지키는 약속</li></ol></div><div class="stop"><div class="range">14~16차시</div><div class="blk">마음돌봄</div><ol><li><b>14</b>마음 신호에 닻 내리기 <a href="#ws-14">웹 학습지</a></li><li><b>15</b>다시 튀어 오르는 힘 <a href="#ws-15">웹 학습지</a></li><li><b>16</b>도움을 청하는 용기 <a href="#ws-16">웹 학습지</a></li></ol></div><div class="stop end"><div class="range">17차시</div><div class="blk">마무리</div><ol><li><b>17</b>마음 여행을 돌아보며</li></ol></div></div>
+  </div>
+</section>
+</main>
 
-  <!-- ===================== 4. 개발 원칙 ===================== -->
-  <section>
-    <div class="kicker"><span class="num">4</span><h2>우리가 지키는 개발 원칙</h2></div>
-    <div class="card">
-      <div class="princ">
-        <div class="p"><b>일반화는 학생이 스스로</b> — 교사가 먼저 설명·암기시키지 않고, 학생이 사례에서 귀납적으로 도출합니다.</div>
-        <div class="p"><b>렌즈와 소재를 구분</b> — 감정·갈등·공동체·마음건강은 소재, 전체를 아우르는 알아차림·조절이 개념적 렌즈입니다.</div>
-        <div class="p"><b>전이 중심 평가</b> — 낯선 실제 상황에 적용하는 모습으로 배움을 확인합니다(연습 반복이 아님).</div>
-        <div class="p"><b>정서적 안전 · 비진단</b> — 자기노출을 강요하지 않고, 진단명을 부여하지 않으며, 위기 징후는 학생지원 체계로 연계합니다.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== 5. 팀원용 상세 문서 바로가기 ===================== -->
-  <section>
-    <div class="kicker"><span class="num">5</span><h2>팀원용 자료</h2></div>
-    <a class="cta" href="program-direction.html">
-      <div class="ctag">팀원 공유용 · 프로그램 매크로 설계</div>
-      <div class="ctitle">프로그램 개발 방향 안내 문서</div>
-      <div class="cdesc">개발 방향 · 4역량 · 성취기준 · 17차시 구성 · 프로젝트별 상세 설계 · 평가 방향 · 공동 개발 원칙을 한 장에 담았습니다.</div>
-      <span class="go">문서 열기 →</span>
-    </a>
-  </section>
-
-</div>
-
-<!-- ===================== 푸터 ===================== -->
 <footer>
-  <div class="wrap" style="padding-bottom:0;">
-    대구마음교육연구회 · 2026 사회정서교육 교사연구회(유형3)<br>
-    준거: 「한국형 사회정서교육 교육과정」(교육부·17개 시도교육청·한국교육환경보호원, 2025 TR-27)
+  <div class="wrap">
+    대구마음교육연구회 · 2026 사회정서교육 교사연구회 지원 사업<br>
+    「한국형 사회정서교육 교육과정」을 바탕으로 만들었습니다.
   </div>
 </footer>
 
+<dialog id="qrbox" aria-labelledby="qr-t">
+  <h3 id="qr-t"></h3>
+  <div id="qr-img"></div>
+  <div class="url" id="qr-u"></div>
+  <form method="dialog"><button class="btn ghost" style="margin-top:16px;width:100%">닫기</button></form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const WS = [{"id": "emotion-card-maker", "b": "마음돌봄", "n": 14, "ln": "마음 신호에 닻 내리기", "where": "수업 단계: 닻 내린 뒤 마음 나누기", "t": "순간감정카드 메이커", "d": "지금 마음을 카드로 표현합니다. 감정 칸과 상황 칸을 쓰고, 원하는 부분만 짝과 나눕니다.", "safe": "별칭으로 써도 됩니다. 사진·저장·공유는 선택입니다.", "u": "https://plusiam.github.io/emotion-card-maker/", "qr": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 37 37\" shape-rendering=\"crispEdges\" role=\"img\" aria-label=\"QR 코드\" class=\"segno\"><path class=\"qrline\" stroke=\"#24302a\" d=\"M2 2.5h7m3 0h3m2 0h1m1 0h5m1 0h1m2 0h7m-33 1h1m5 0h1m1 0h2m1 0h1m2 0h3m1 0h1m2 0h1m1 0h2m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h6m2 0h3m1 0h1m3 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m6 0h3m2 0h1m3 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m2 0h2m2 0h1m1 0h2m3 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h2m1 0h6m1 0h1m2 0h1m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h2m-23 1h3m1 0h2m2 0h3m2 0h4m1 0h3m8 0h2m-32 1h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m4 0h4m1 0h1m2 0h2m1 0h2m1 0h1m-33 1h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h3m2 0h3m2 0h1m-31 1h1m1 0h1m3 0h1m1 0h2m1 0h1m2 0h1m2 0h1m2 0h2m3 0h1m1 0h1m2 0h1m-33 1h2m1 0h6m5 0h1m1 0h1m1 0h3m3 0h2m1 0h3m1 0h2m-31 1h1m4 0h2m2 0h4m1 0h2m1 0h1m1 0h1m2 0h1m2 0h1m2 0h2m-30 1h7m1 0h4m4 0h3m3 0h1m1 0h1m1 0h3m-30 1h5m2 0h4m1 0h1m3 0h2m1 0h7m2 0h2m-29 1h3m1 0h1m2 0h1m3 0h3m2 0h1m1 0h2m1 0h4m1 0h3m-30 1h1m3 0h1m3 0h1m2 0h1m4 0h1m2 0h5m1 0h1m1 0h2m1 0h2m-33 1h3m1 0h1m1 0h1m2 0h3m2 0h1m1 0h1m1 0h1m2 0h2m2 0h4m1 0h2m-32 1h1m4 0h1m3 0h3m1 0h1m1 0h2m5 0h4m2 0h1m2 0h2m-32 1h2m3 0h2m1 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m5 0h1m1 0h4m-33 1h2m1 0h1m4 0h1m3 0h2m2 0h2m1 0h2m2 0h1m2 0h1m2 0h2m1 0h1m-30 1h1m2 0h2m1 0h1m1 0h1m1 0h2m2 0h1m3 0h4m1 0h3m2 0h2m-32 1h1m1 0h3m2 0h2m1 0h2m1 0h1m2 0h2m3 0h1m1 0h2m1 0h1m1 0h1m-30 1h1m1 0h1m3 0h6m2 0h3m1 0h3m1 0h7m2 0h2m-25 1h1m1 0h3m3 0h4m1 0h1m2 0h1m3 0h2m-30 1h7m3 0h1m1 0h9m2 0h2m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h2m1 0h1m5 0h2m2 0h4m3 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h2m3 0h1m2 0h11m1 0h2m-32 1h1m1 0h3m1 0h1m1 0h3m3 0h2m1 0h2m1 0h1m1 0h1m4 0h1m1 0h4m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h2m2 0h2m1 0h2m-31 1h1m5 0h1m1 0h3m2 0h3m1 0h1m2 0h1m1 0h4m1 0h2m3 0h1m-33 1h7m7 0h1m1 0h1m1 0h2m1 0h1m3 0h2m1 0h1m1 0h1\"/></svg>"}, {"id": "my-mind-card", "b": "마음돌봄", "n": 15, "ln": "다시 튀어 오르는 힘", "where": "선택 확장 활동 · 시간을 더 확보했을 때", "t": "나만의 마음 비법 만들기", "d": "오늘 고른 방법 하나를 골라 언제·어떻게 쓸지 구체적으로 쓰고, 비법 이름과 아이콘을 정해 카드로 미리 봅니다.", "safe": "가상 정보나 별칭으로 연습해도 됩니다.", "u": "https://plusiam.github.io/my-mind-card/", "qr": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 33 33\" shape-rendering=\"crispEdges\" role=\"img\" aria-label=\"QR 코드\" class=\"segno\"><path class=\"qrline\" stroke=\"#24302a\" d=\"M2 2.5h7m1 0h2m2 0h2m4 0h1m1 0h1m1 0h7m-29 1h1m5 0h1m1 0h1m1 0h1m3 0h1m1 0h2m1 0h2m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h2m1 0h1m2 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h5m1 0h1m1 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m3 0h2m2 0h1m2 0h2m1 0h1m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-19 1h6m3 0h1m-20 1h1m2 0h6m1 0h1m1 0h1m2 0h3m1 0h3m2 0h1m1 0h3m-25 1h1m2 0h1m2 0h1m2 0h3m1 0h3m3 0h2m1 0h2m-26 1h5m4 0h3m1 0h2m3 0h3m3 0h1m-26 1h1m2 0h1m4 0h1m4 0h1m2 0h1m3 0h5m2 0h1m-28 1h2m1 0h4m2 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m-28 1h1m1 0h3m2 0h1m1 0h1m1 0h4m1 0h2m3 0h7m-26 1h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h3m1 0h1m1 0h4m1 0h1m1 0h1m-29 1h3m2 0h1m2 0h1m1 0h1m3 0h1m6 0h4m1 0h1m1 0h1m-29 1h1m1 0h1m2 0h4m2 0h1m2 0h2m9 0h1m-26 1h1m2 0h1m7 0h3m1 0h1m2 0h3m3 0h1m1 0h2m-28 1h2m2 0h3m1 0h2m1 0h2m2 0h3m1 0h1m3 0h3m2 0h1m-29 1h3m2 0h1m1 0h1m6 0h3m2 0h3m1 0h1m1 0h2m-27 1h2m4 0h2m2 0h5m1 0h2m2 0h8m-20 1h4m2 0h2m1 0h1m2 0h1m3 0h2m-26 1h7m1 0h1m2 0h2m1 0h7m1 0h1m1 0h2m-26 1h1m5 0h1m1 0h1m1 0h2m2 0h1m1 0h2m1 0h2m3 0h1m2 0h1m-28 1h1m1 0h3m1 0h1m1 0h2m2 0h3m1 0h1m1 0h8m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h4m9 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h1m3 0h1m5 0h1m1 0h2m1 0h3m-29 1h1m5 0h1m2 0h2m1 0h2m7 0h1m2 0h3m1 0h1m-29 1h7m1 0h1m1 0h1m2 0h2m4 0h7\"/></svg>"}, {"id": "munpae-maker", "b": "마음돌봄", "n": 16, "ln": "도움을 청하는 용기", "where": "수업 단계: 사실·느낌·요청 익히기", "t": "내 마음을 알리는 문패 만들기", "d": "‘지금 내 마음은…’에 사실과 느낌을, ‘나에게 부탁해요’에 필요한 도움을 씁니다. 가상 사례로 함께 연습합니다.", "safe": "개인 고민을 담은 문패는 공개 게시하지 않습니다. 문패는 자동으로 전송되지 않습니다.", "u": "https://plusiam.github.io/munpae-maker/", "qr": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 33 33\" shape-rendering=\"crispEdges\" role=\"img\" aria-label=\"QR 코드\" class=\"segno\"><path class=\"qrline\" stroke=\"#24302a\" d=\"M2 2.5h7m1 0h1m1 0h3m3 0h4m2 0h7m-29 1h1m5 0h1m1 0h4m4 0h1m1 0h1m1 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m5 0h5m5 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m1 0h4m2 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m8 0h2m2 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h1m1 0h2m6 0h2m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m5 0h1m2 0h2m-19 1h1m1 0h2m1 0h3m4 0h1m3 0h5m1 0h1m2 0h1m1 0h2m-22 1h2m3 0h2m2 0h9m3 0h1m-29 1h1m1 0h1m2 0h2m3 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m-27 1h5m1 0h1m2 0h1m1 0h3m3 0h2m1 0h2m5 0h1m-29 1h2m4 0h3m1 0h1m1 0h1m4 0h3m3 0h1m1 0h2m-23 1h1m2 0h1m4 0h1m1 0h3m2 0h1m2 0h1m3 0h3m-28 1h1m3 0h3m2 0h2m1 0h1m3 0h3m2 0h2m2 0h3m-29 1h2m5 0h2m2 0h2m2 0h2m3 0h1m2 0h2m2 0h1m-28 1h1m1 0h1m1 0h6m1 0h2m1 0h2m2 0h1m2 0h1m2 0h2m1 0h1m-27 1h1m5 0h1m1 0h3m3 0h3m2 0h1m2 0h1m1 0h3m-28 1h1m5 0h3m1 0h7m3 0h1m1 0h1m1 0h1m1 0h1m-25 1h3m3 0h3m1 0h3m1 0h3m1 0h2m2 0h1m1 0h1m-26 1h1m2 0h1m1 0h1m2 0h1m3 0h2m1 0h3m1 0h7m-19 1h1m1 0h1m5 0h1m3 0h1m3 0h5m-29 1h7m1 0h2m2 0h1m1 0h1m1 0h5m1 0h1m1 0h2m1 0h1m-28 1h1m5 0h1m1 0h1m2 0h4m1 0h1m1 0h1m1 0h1m3 0h2m1 0h1m-28 1h1m1 0h3m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m2 0h5m1 0h1m-27 1h1m1 0h3m1 0h1m1 0h2m5 0h2m2 0h1m3 0h3m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m1 0h3m4 0h1m2 0h1m1 0h1m-29 1h1m5 0h1m3 0h2m1 0h3m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m-28 1h7m1 0h1m1 0h2m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1\"/></svg>"}];
+const BLOCKS = ["출발", "자기인식", "자기관리", "소통·협력", "책임", "마음돌봄", "마무리"];
+const KEY = 'maeum-edu:favorites';
+let fav = new Set();
+try { fav = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch (e) {}
+let cat = 'all';
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const short = u => u.replace(/^https?:\/\//,'').replace(/\/$/,'');
+function save(){ try { localStorage.setItem(KEY, JSON.stringify([...fav])); } catch (e) {} }
+function chips(){
+  const present = BLOCKS.filter(b => WS.some(w => w.b === b));
+  const list = [['all','전체']].concat(present.map(b => [b,b]));
+  if (fav.size) list.push(['fav','즐겨찾기 ' + fav.size]);
+  if (cat === 'fav' && !fav.size) cat = 'all';
+  $('#chips').innerHTML = list.map(([k,l]) => `<button class="chip" type="button" data-c="${esc(k)}" aria-pressed="${cat===k}">${esc(l)}</button>`).join('');
+  $('#favnote').hidden = !fav.size;
+}
+function render(){
+  chips();
+  const nums = WS.map(w => w.n).join('·');
+  $('#ws-lead').textContent = `지금은 ${nums}차시 웹 학습지 ${WS.length}개가 있습니다. 다른 차시는 원고의 활동지로 수업합니다.`;
+  const q = $('#q').value.trim().toLowerCase();
+  const list = WS.filter(w => (cat==='all' || (cat==='fav' ? fav.has(w.id) : w.b===cat)) &&
+    (!q || [w.t,w.d,w.ln,w.n+'차시',w.where,w.b].join(' ').toLowerCase().includes(q)));
+  $('#grid').innerHTML = list.length ? list.map(w => `
+    <article class="card" id="ws-${w.n}">
+      <div class="top"><div><div class="no">${w.n}차시</div><div class="ln">${esc(w.ln)} · ${esc(w.b)}</div></div>
+        <button class="fav" type="button" data-id="${w.id}" aria-pressed="${fav.has(w.id)}" aria-label="${esc(w.t)} 즐겨찾기 ${fav.has(w.id)?'해제':'추가'}">${fav.has(w.id)?'★ 즐겨찾기':'☆ 즐겨찾기'}</button></div>
+      <h3>${esc(w.t)}</h3>
+      <div class="where">${esc(w.where)}</div>
+      <p>${esc(w.d)}</p>
+      <div class="safe">${esc(w.safe)}</div>
+      <div class="url">${esc(short(w.u))}</div>
+      <div class="actions">
+        <a class="btn primary" href="${w.u}" target="_blank" rel="noopener">학습지 열기</a>
+        <button class="btn ghost" type="button" data-qr="${w.id}">QR 크게</button>
+        <button class="btn ghost" type="button" data-copy="${w.u}">주소 복사</button>
+      </div>
+    </article>`).join('') :
+    `<div class="empty">찾는 학습지가 없습니다. 검색어를 지우거나 전체를 눌러 보세요.</div>`;
+}
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.remove('show'),1600); }
+$('#q').addEventListener('input', render);
+$('#chips').addEventListener('click', e => { const b=e.target.closest('.chip'); if(!b) return; cat=b.dataset.c; render(); });
+$('#grid').addEventListener('click', async e => {
+  const f = e.target.closest('.fav');
+  if (f) { const id=f.dataset.id; fav.has(id)?fav.delete(id):fav.add(id); save(); render(); return; }
+  const q = e.target.closest('[data-qr]');
+  if (q) { const w=WS.find(x=>x.id===q.dataset.qr); $('#qr-t').textContent=w.n+'차시 · '+w.t; $('#qr-img').innerHTML=w.qr; $('#qr-u').textContent=short(w.u); $('#qrbox').showModal(); return; }
+  const c = e.target.closest('[data-copy]');
+  if (c) { try { await navigator.clipboard.writeText(c.dataset.copy); toast('주소를 복사했습니다'); } catch(err) { prompt('아래 주소를 복사하세요', c.dataset.copy); } }
+});
+$('#route').addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#ws-"]'); if (!a) return;
+  e.preventDefault(); cat='all'; $('#q').value=''; render();
+  const el = document.querySelector(a.getAttribute('href'));
+  el.scrollIntoView({behavior:'smooth', block:'start'}); el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1600);
+});
+render();
+</script>
 </body>
 </html>
